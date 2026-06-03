@@ -25,7 +25,7 @@ Using a personal Conda environment stored in `localstorage/` ensures that your s
 After logging into SARVe, open a terminal and move to your storage directory:
 
 ```bash
-cd localstorage/
+cd ~/localstorage/
 ```
 
 This location will be used to store your custom Conda environments and project files.
@@ -74,7 +74,7 @@ After running this command for the first time, restart your terminal or reload y
 Activate your newly created environment:
 
 ```bash
-conda activate /home/jovyan/localstorage/test_env
+conda activate ~/localstorage/test_env
 ```
 
 ### Explanation
@@ -148,13 +148,13 @@ Your notebook will now use the newly created environment.
 ## Example Workflow
 
 ```bash
-cd localstorage/
+cd ~/localstorage/
 
 conda create --prefix ./test_env python=3.13
 
 conda init
 
-conda activate /home/jovyan/localstorage/test_env
+conda activate ~/localstorage/test_env
 
 conda install conda-forge::ipykernel
 
