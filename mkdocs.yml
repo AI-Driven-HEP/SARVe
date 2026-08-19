@@ -1,7 +1,7 @@
 site_name: SARVe Wiki
-site_url: https://danial-movahed.github.io/SARVe/
-repo_url: https://github.com/danial-movahed/SARVe
-repo_name: danial-movahed/SARVe
+site_url: https://AI-Driven-HEP.github.io/SARVe/
+repo_url: https://github.com/AI-Driven-HEP/SARVe/
+repo_name: AI-Driven-HEP/SARVe
 theme:
   name: material
 
