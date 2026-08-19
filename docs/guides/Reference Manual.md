@@ -10,6 +10,7 @@
 # Storage
 
 For each server, there are three types of storage available:
+
 | Storage Type      | Path            | Description                                                                                                                             | Available across sessions | Available across computers | Hardware   |
 | ----------------- | --------------  | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------------------------- | ---------- |
 | Local storage     | ~/localstorage  | :fontawesome-solid-sd-card: Use this for data that need fast access. (e.g. conda environments)                                          | :material-check:          | :material-close:           | NVMe SSD   |
