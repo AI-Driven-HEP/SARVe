@@ -17,7 +17,7 @@ Using a dedicated Python environment ensures that your setup remains available a
     For best performance, it is recommended to work within **`~/localstorage`** directory. See Storage for more details on different storage types and how you could use them in your project.
 
 ### Custom Python environment creation using conda
-To quickly create a custom Python environment with conda with name env and using Python 3.13 in `localstorage`, open a terminal and use: 
+To quickly create a custom Python environment with conda with name `env` and using Python 3.13 in `localstorage`, open a terminal and use: 
 
 ```bash
 conda create --prefix ~/localstorage/env python=3.13
@@ -26,7 +26,7 @@ conda activate ~/localstorage/env
 ```
 
 ### Adding a conda environment to Jupyter
-The newly created environment is usable in terminal, but not in JupyterLab. To register it in JupyterLab install the `ipykernel` package inside the environment and use it to register the environment in JupyterLab kernel list.
+The newly created environment is usable in terminal, but not in JupyterLab. To register it in JupyterLab install the `ipykernel` package inside the environment and use it to create an IPython kernel for the environment.
 
 ```bash
 conda install conda-forge::ipykernel
@@ -34,7 +34,7 @@ python -m ipykernel install --user --name env --display-name "Python (env)"
 ```
 
 ### Using a custom Python environment in JupyterLab
-After creating a Python environment, JupyterLab won't automatically switch to it. To change the environment used by JupyterLab, change it's kernel to the kernel registered for your custom environment. To change the kernel used by JupyterLab:
+After creating a Python environment, JupyterLab won't automatically switch to it. To change the environment used by JupyterLab, change it's kernel to the kernel registered for your custom environment:
 
 1. Open the SARVe JupyterLab interface.
 2. Create a new notebook or open an existing one.
@@ -49,7 +49,7 @@ Kernel → Change Kernel
 Python (env)
 ```
 
-Your notebook will now use the newly created environment.
+Your notebook will now use the newly created environment `env`.
 
 ## Installing a Python package
 To install a Python package, use your favorite Python package manager. We recommend using conda or mamba.
@@ -62,7 +62,7 @@ To install a Python package, use your favorite Python package manager. We recomm
 
 ???+ Note
 
-    Python packages are installed in your Python environment. Make sure to create a personal environment if you want installed packages to persist over sessions.
+    Python packages are installed in the activated Python environment. Make sure to create and activate a personal environment if you want installed packages to persist over sessions.
 
 ## Installing a system package
 The default JupyterLab server runs on ubuntu. To install a system package use `apt`. 
