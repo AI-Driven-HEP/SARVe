@@ -46,3 +46,6 @@ Then choose the created kernel in JupyterLab by navigating to:
 Kernel → Change Kernel
 ```
 and selecting the newly created kernel.
+
+
+*[SARVe]: Scalable Analytics and Research Virtual Environment
