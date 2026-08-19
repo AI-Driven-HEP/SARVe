@@ -51,20 +51,22 @@ Python (env)
 
 Your notebook will now use the newly created environment `env`.
 
-## Installing a Python package
+## Installing packages
+
+### Installing a Python package
 To install a Python package, use your favorite Python package manager. We recommend using conda or mamba.
 
 ???+ Example
 
     ```bash
-    conda install numpy scipy matplotlib pandas
+    conda install numpy
     ```
 
 ???+ Note
 
     Python packages are installed in the activated Python environment. Make sure to create and activate a personal environment if you want installed packages to persist over sessions.
 
-## Installing a system package
+### Installing a system package
 The default JupyterLab server runs on ubuntu. To install a system package use `apt`. 
 
 ???+ Example
