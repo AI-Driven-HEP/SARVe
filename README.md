@@ -1,2 +1,2 @@
 # SARVe wiki
-[danial-movahed.github.io/SARVe](https://danial-movahed.github.io/SARVe/)
+[AI-Driven-HEP.github.io/SARVe](https://AI-Driven-HEP.github.io/SARVe/)
