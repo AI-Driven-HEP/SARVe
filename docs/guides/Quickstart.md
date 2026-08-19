@@ -1,9 +1,8 @@
 # Quickstart
-This guide explains how to set up your working environment on SARVe, create and manage Python environments, and configure Jupyter kernels for interactive development and analysis.
-
----
+This guide explains how to set up your working environment on SARVe, create and manage Python environments, and configure JupyterLab kernels for interactive development and analysis.
 
 ## Python environment
+We recomment using conda and/or mamba to manage your Python environment.
 
 While you may use the default conda **base environment** provided by the server, creating your own dedicated environment is generally recommended for reproducibility, package management, and dependency isolation.
 
@@ -11,125 +10,35 @@ While you may use the default conda **base environment** provided by the server,
 
     Changes made to the server's default/base environment are **not persistent** as they are stored in server's ephemeral storage. After your server is stopped or restarted, the base environment **will** reset to its original state, causing installed packages and modifications to be lost.
 
+Using a dedicated Python environment ensures that your setup remains available across sessions.
 
-Using a personal Python environment ensures that your setup remains available across sessions.
+???+ Tip
 
-For best performance, it is recommended to work within **`~/localstorage/`** directory. This storage location offers faster access, See Storage for more details on different storage types and how you could use them in your project.
+    For best performance, it is recommended to work within **`~/localstorage`** directory. See Storage for more details on different storage types and how you could use them in your project.
 
-
----
-
-## Step 1 — Navigate to Your Storage Directory
-
-After logging into SARVe, open a terminal and move to your storage directory:
+### Custom Python environment creation using conda
+To quickly create a custom Python environment with conda with name env and using Python 3.13 in `localstorage`, open a terminal and use: 
 
 ```bash
-cd ~/localstorage/
-```
-
-This location will be used to store your custom Conda environments and project files.
-
----
-
-## Step 2 — Create a New Conda Environment
-
-Create a new Conda environment using a local installation path.
-
-Example:
-
-```bash
-conda create --prefix ./test_env python=3.13
-```
-
-### Explanation
-
-* `conda create` → Creates a new Conda environment.
-* `--prefix ./test_env` → Installs the environment inside the current directory (`localstorage/test_env`).
-* `python=3.13` → Specifies the Python version.
-
-You may replace:
-
-* `test_env` with your preferred environment name.
-* `3.13` with another supported Python version if needed.
-
----
-
-## Step 3 — Initialize Conda
-
-If Conda has not been initialized previously, run:
-
-```bash
+conda create --prefix ~/localstorage/env python=3.13
 conda init
+conda activate ~/localstorage/env
 ```
 
-This configures your shell to recognize Conda commands.
-
-After running this command for the first time, restart your terminal or reload your shell configuration.
-
----
-
-## Step 4 — Activate the Environment
-
-Activate your newly created environment:
-
-```bash
-conda activate ~/localstorage/test_env
-```
-
-### Explanation
-
-Since the environment was created using `--prefix`, activation requires the **full path** to the environment directory.
-
-Replace:
-
-```text
-test_env
-```
-
-with the name of your environment if you used a different one.
-
----
-
-## Step 5 — Install Jupyter Kernel Support
-
-Install the `ipykernel` package inside the environment:
+### Adding a conda environment to Jupyter
+The newly created environment is usable in terminal, but not in JupyterLab. To register it in JupyterLab install the `ipykernel` package inside the environment and use it to register the environment in JupyterLab kernel list.
 
 ```bash
 conda install conda-forge::ipykernel
+python -m ipykernel install --user --name env --display-name "Python (env)"
 ```
 
-### Why is this necessary?
+### Using a custom Python environment in JupyterLab
+After creating a Python environment, JupyterLab won't automatically switch to it. To change the environment used by JupyterLab, change it's kernel to the kernel registered for your custom environment. To change the kernel used by JupyterLab:
 
-`ipykernel` allows your Conda environment to appear as a selectable Python kernel inside Jupyter notebooks.
-
----
-
-## Step 6 — Register the Environment as a Jupyter Kernel
-
-Register the environment so it becomes available in SARVe Jupyter notebooks:
-
-```bash
-python -m ipykernel install --user --name test_env --display-name "Python (test_env)"
-```
-
-### Explanation
-
-* `--user` → Installs the kernel for your user account.
-* `--name test_env` → Internal kernel identifier.
-* `--display-name "Python (test_env)"` → Name displayed in Jupyter.
-
-You can customize the display name if desired.
-
----
-
-## Step 7 — Use Your Environment in Jupyter
-
-After completing the installation:
-
-1. Open the SARVe Jupyter interface.
+1. Open the SARVe JupyterLab interface.
 2. Create a new notebook or open an existing one.
 3. Navigate to:
-
 ```text
 Kernel → Change Kernel
 ```
@@ -137,50 +46,36 @@ Kernel → Change Kernel
 4. Select:
 
 ```text
-Python (test_env)
+Python (env)
 ```
 
 Your notebook will now use the newly created environment.
 
----
+## Installing a Python package
+To install a Python package, use your favorite Python package manager. We recommend using conda or mamba.
 
-## Example Workflow
+???+ Example
 
-```bash
-cd ~/localstorage/
+    ```bash
+    conda install numpy scipy matplotlib pandas
+    ```
 
-conda create --prefix ./test_env python=3.13
+???+ Note
 
-conda init
+    Python packages are installed in your Python environment. Make sure to create a personal environment if you want installed packages to persist over sessions.
 
-conda activate ~/localstorage/test_env
+## Installing a system package
+The default JupyterLab server runs on ubuntu. To install a system package use `apt`. 
 
-conda install conda-forge::ipykernel
+???+ Example
 
-python -m ipykernel install --user --name test_env --display-name "Python (test_env)"
-```
+    ```bash
+    sudo apt install gcc
+    ```
 
----
+???+ Note
 
-## Notes
-
-* Store environments inside `localstorage/` to preserve your work.
-* Use descriptive environment names for different projects.
-* Install project dependencies after activating the environment.
-
-Example:
-
-```bash
-conda install numpy scipy matplotlib pandas
-```
-
-or
-
-```bash
-pip install package_name
-```
-
----
+    System packages are installed in ephemeral storage which means they get reset after your server is stopped. To permanently install a system package you have to create a custom container image and include the package in it. See custom container image creation for details on how the default image is created and how you can add packages to it.
 
 
 *[SARVe]: Scalable Analytics and Research Virtual Environment
